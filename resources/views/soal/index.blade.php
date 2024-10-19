@@ -51,6 +51,7 @@
                                             <th>No</th>
                                             <th>Kategori Soal</th>
                                             <th>Keterangan Soal</th>
+                                            <th>Total Soal</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -61,9 +62,11 @@
                                             <td>{{$no++}}.</td>
                                             <td>{{$r->kategori_soal}}</td>
                                             <td>{{$r->keterangan_soal}}</td>
+                                            <td>{{$r->totalsoal}}</td>
                                             <td>
                                                 <button class="btn btn-info btn-sm btn-edit" data-id="{{$r->id}}"> <i class="mdi mdi-pencil me-1"></i> Edit</button>
                                                 <button class="btn btn-danger btn-sm btn-hapus" data-id="{{$r->id}}"><i class="mdi mdi-trash-can me-1"></i> Hapus</button>
+                                                <a href="{{url('soal/lihat_soal/'.$r->id)}}" class="btn btn-warning btn-sm"> <i class="mdi mdi-eye-outline me-1"></i>Lihat Soal</a>
                                             </td>
                                         </tr>
                                         @endforeach

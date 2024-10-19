@@ -366,6 +366,16 @@
 @if(!empty($script))
 @include($script)
 @endif
+<script>
+    @if(session('alertlogin'))
+    Swal.fire({
+        title: "",
+        text: "{{ session('alertlogin.message') }}",
+        icon: "{{ session('alertlogin.type') }}",
+        confirmButtonColor: "#3051d3",
+    });
+    @endif
+</script>
 </body>
 
 </html>

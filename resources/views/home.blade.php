@@ -3,6 +3,7 @@
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
+
 <div class="main-content">
 
     <div class="page-content">
@@ -12,7 +13,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="page-title mb-1">Dashboard</h4>
+                        <h4 class="page-title mb-1">Dashboard </h4>
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item active">Welcome to Xoric Dashboard</li>
                         </ol>

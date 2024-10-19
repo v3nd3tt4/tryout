@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Soal;
 use App\Http\Controllers\Controller;
+use App\Models\IsiSoal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SoalController extends Controller
 {
@@ -13,12 +15,16 @@ class SoalController extends Controller
      */
     public function index()
     {
-        $row = Soal::orderBy('id', 'DESC')->get();
+        // $row = Soal::orderBy('id', 'DESC')->get();
+        $row = Soal::select('soals.*', DB::raw('(SELECT COUNT(*) FROM isi_soals WHERE isi_soals.id_kategori_soal = soals.id) as totalsoal'))
+    ->orderBy('id', 'DESC')
+    ->get();
         $data = array(
-            'link' => 'soal',
+            'link' => 'kategori',
             'script' => 'soal/script'
-        );
+        );        
 		return view('soal/index', compact('row'))->with($data);
+
     }
 
     /**
@@ -89,6 +95,20 @@ class SoalController extends Controller
                 'status' => 'failed',
             ]);
         }
+    }
+
+    public function lihat_soal($id){
+        $q = IsiSoal::where('id_kategori_soal', $id)->get();
+        $kategori = Soal::where('id', $id)->first();
+        $data = array(
+            'link' => 'kategori',
+            'script' => 'soal/script',
+            'soal' => $q,
+            'kunci_jawaban' => range('A', 'E'),
+            'kategori_soal' => $id,
+            'kategori' => $kategori
+        ); 
+		return view('soal/lihat_soal')->with($data);
     }
 
     /**
